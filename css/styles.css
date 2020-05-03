@@ -28,7 +28,7 @@ button {
 }
 
 .difficulty-level {
-  
+
   width: 100px;
   padding: 3px 0;
   margin: auto;;
@@ -47,10 +47,11 @@ button {
 
 .board-word {
   border: 1px solid white;
-  height: 20px;
-  width: 60px;
+  height: 40px;
+  width: 120px;
   margin: auto;
   text-align: center;
+  font-size: 30px;
 }
 
 .user-input {
@@ -66,7 +67,7 @@ button {
 .wrap {
   flex-wrap: wrap;
   height: 400px;
-  width: 400px;
+  width: 1300px;
 }
 
 #difficulty {
