@@ -11,6 +11,7 @@ let score = 0;
 let attempts = 0;
 let correctAttempts = 0;
 let answerStreak = 0;
+let highestAnswerStreak = 0;
 
 //EVENT LISTENERS
 
@@ -32,6 +33,7 @@ function init() {
   attempts = 0;
   correctAttempts = 0;
   answerStreak = 0;
+  highestAnswerStreak = 0;
 }
 
 function refresh() {
@@ -95,10 +97,15 @@ refresh();
 
 
 function correctWord() {
-  score = score + 10;
+
+  answerStreak = answerStreak + 1;
+  if (answerStreak > highestAnswerStreak) {
+    highestAnswerStreak = answerStreak
+  }
+  score = score + 10 + answerStreak;
   attempts = attempts + 1;
   correctAttempts = correctAttempts + 1;
-  answerStreak = answerStreak + 1;
+
 
   for (var i = 0; i < turboTypingArray.length; i++) {
     if(turboTypingArray[i] == word) {
@@ -119,6 +126,7 @@ function wrongWord() {
 
 function checkDone() {
   if (turboTypingArray.length < 1) {
-    alert("Score: " + score +  "\nAttempts: " + attempts + "\nCorrect Attempts: " + correctAttempts)
+    score = score + (attempts - correctAttempts);
+    alert("Score: " + score +  "\nAttempts: " + attempts + "\nCorrect Attempts: " + correctAttempts + "\nHighest Answer Streak: " +highestAnswerStreak)
   }
 }
