@@ -45,6 +45,10 @@ function init() {
   correctAttempts = 0;
   answerStreak = 0;
   highestAnswerStreak = 0;
+
+  if (document.getElementById("board").classList.contains("game-over")) {
+    document.getElementById("board").classList.remove("game-over");
+  }
 }
 
 function refresh() {
