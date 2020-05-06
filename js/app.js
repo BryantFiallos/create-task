@@ -1,7 +1,16 @@
 //CONSTANTS
-
-const easyWords = ["dog", "cat", "bat", "axe", "hat", "ant", "sat", "rug", "mug", "bet"];
+let duplicate;
+const easyWords = ["dog", "cat", "bat", "axe", "hat", "ant", "sat", "rug", "mug", "bet", "art", "can", "day", "box", "egg", "few", "bed", "job", "hot", "men", "use", "sun", "jar", "lip", "flu", "aim", "red", "lid", "ear", "tea", "ski", "oak", "gum", "ham", "mob", "nut", "shy", "van", "elk", "gem", "rap", "fur", "eve", "cry", "mad", "ore", "tax", "six", "pet", "old", "map", "gym", "leg", "bus", "app", "war", "yes", "mud", "rim", "duo"];
 const mediumWords = ["house", "beach", "adult", "chief", "funny", "hello", "metal", "sauce", "cocoa", "flags", "upset", "pearl", "trash", "enemy", "pizza", "humor", "eagle", "flame", "cargo", "puppy", "retro", "spark", "bride", "straw", "inbox", "bored", "chalk", "fatal", "hobby", "melee", "bagel", "debug", "amaze", "witch", "stool", "thief", "acorn", "hover", "lever", "merge", "lunar", "debit", "cubic", "erase", "vivid", "waist", "yeast", "syrup", "trunk", "rebel", "lobby", "pasta", "grape", "choir", "jewel", "scoop", "rival", "yacht", "sushi", "bunny"]
+
+for (var i = 0; i < easyWords.length; i++) {
+  for (var j = i+1; j < easyWords.length; j++) {
+    if (easyWords[i] == easyWords[j]) {
+      duplicate = easyWords[j]
+      console.log(duplicate)
+    }
+  }
+}
 
 //VARIABLES
 
@@ -58,6 +67,7 @@ init();
     document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
   });
   console.log(turboTypingArray);
+  document.getElementById("user-input").focus();
   refresh();
 }
 
@@ -73,6 +83,7 @@ function setMedium() {
       document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
     });
     console.log(turboTypingArray);
+    document.getElementById("user-input").focus();
     refresh();
 }
 
