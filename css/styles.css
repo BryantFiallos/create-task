@@ -75,6 +75,11 @@ button {
   width: 1400px;
 }
 
+.game-over {
+  opacity: 0.2;
+  background-color: red;
+}
+
 #difficulty {
   margin-bottom: 10px;
   margin: auto;
@@ -98,4 +103,5 @@ button {
 
 #board {
   margin: auto;
+  
 }

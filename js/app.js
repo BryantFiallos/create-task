@@ -160,5 +160,7 @@ function checkDone() {
 
 
 function alertdat() {
-  alert("you clicked")
+
+  document.getElementById("board").classList.add("game-over");
+  document.getElementById("board").innerHTML = "Score: " + score
 }
