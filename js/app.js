@@ -22,6 +22,8 @@ let attempts = 0;
 let correctAttempts = 0;
 let answerStreak = 0;
 let highestAnswerStreak = 0;
+let timeRemaining;
+let myTimer;
 
 //EVENT LISTENERS
 
@@ -45,9 +47,12 @@ function init() {
   correctAttempts = 0;
   answerStreak = 0;
   highestAnswerStreak = 0;
+  timeRemaining = 120;
 
-  if (document.getElementById("board").classList.contains("game-over")) {
-    document.getElementById("board").classList.remove("game-over");
+  clearInterval(myTimer);
+
+  if (document.getElementById("board").classList.contains("game-over-lose")) {
+    document.getElementById("board").classList.remove("game-over-lose");
   }
 }
 
@@ -74,6 +79,8 @@ init();
   });
   console.log(turboTypingArray);
   document.getElementById("user-input").focus();
+  document.getElementById("timer").innerHTML = "2:00";
+  myTimer = setInterval(updateTimer, 1000);
   refresh();
 }
 
@@ -159,12 +166,46 @@ function checkDone() {
   if (turboTypingArray.length < 1) {
     score = score + (attempts - correctAttempts);
     alert("Score: " + score +  "\nAttempts: " + attempts + "\nCorrect Attempts: " + correctAttempts + "\nHighest Answer Streak: " +highestAnswerStreak)
+    clearInterval(myTimer);
   }
 }
 
 
-function alertdat() {
+function gameOver() {
 
-  document.getElementById("board").classList.add("game-over");
+  document.getElementById("board").classList.add("game-over-lose");
   document.getElementById("board").innerHTML = "Score: " + score
+}
+
+
+function updateTimer() {
+
+  timeRemaining--
+
+
+if (timeRemaining > 60) {
+
+  timerSeconds = timeRemaining - 60;
+  timerDisplay = "1:" + timerSeconds;
+}
+ if (timeRemaining < 70) {
+  timerSeconds = timeRemaining - 60
+  timerDisplay = "1:0" + timerSeconds;
+
+
+}
+
+ if (timeRemaining < 60) {
+  timerDisplay = "0:" + timeRemaining;
+}
+
+if (timeRemaining < 10) {
+  timerDisplay = "0:0" + timeRemaining;
+}
+
+  if (timeRemaining < 1) {
+    gameOver();
+    clearInterval(myTimer);
+  }
+  document.getElementById("timer").innerHTML = timerDisplay;
 }

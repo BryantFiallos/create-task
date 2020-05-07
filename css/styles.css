@@ -75,9 +75,11 @@ button {
   width: 1400px;
 }
 
-.game-over {
-  opacity: 0.2;
+.game-over-lose {
+  opacity: 0.6;
   background-color: red;
+  font-size: 40px;
+  color: white;
 }
 
 #difficulty {
@@ -103,5 +105,15 @@ button {
 
 #board {
   margin: auto;
-  
+
+}
+
+@font-face {
+  font-family: "digital-clock";
+  src: url("../fonts/digital-7.ttf");
+}
+
+#timer {
+  font-size: 80px;
+  font-family: "digital-clock"
 }
