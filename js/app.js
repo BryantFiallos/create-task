@@ -51,6 +51,9 @@ function init() {
 
   clearInterval(myTimer);
 
+  document.getElementById("timer").innerHTML = "2:00";
+  myTimer = setInterval(updateTimer, 1000);
+
   if (document.getElementById("board").classList.contains("game-over-lose")) {
     document.getElementById("board").classList.remove("game-over-lose");
   }
@@ -77,10 +80,8 @@ init();
   turboTypingArray.forEach((item, i) => {
     document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
   });
-  console.log(turboTypingArray);
+
   document.getElementById("user-input").focus();
-  document.getElementById("timer").innerHTML = "2:00";
-  myTimer = setInterval(updateTimer, 1000);
   refresh();
 }
 
@@ -95,7 +96,7 @@ function setMedium() {
     turboTypingArray.forEach((item, i) => {
       document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
     });
-    console.log(turboTypingArray);
+
     document.getElementById("user-input").focus();
     refresh();
 }
@@ -110,7 +111,7 @@ function setHard() {
     turboTypingArray.forEach((item, i) => {
       document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
     });
-    console.log(turboTypingArray);
+
     document.getElementById("user-input").focus();
     refresh();
 }
@@ -174,7 +175,7 @@ function checkDone() {
 function gameOver() {
 
   document.getElementById("board").classList.add("game-over-lose");
-  document.getElementById("board").innerHTML = "Score: " + score
+  document.getElementById("board").innerHTML = "Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length;
 }
 
 

@@ -76,8 +76,8 @@ button {
 }
 
 .game-over-lose {
-  opacity: 0.6;
-  background-color: red;
+
+  background-color: rgb(255, 0, 0, 0.2);
   font-size: 40px;
   color: white;
 }
