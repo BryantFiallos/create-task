@@ -175,7 +175,7 @@ function checkDone() {
 function gameOver() {
 
   document.getElementById("board").classList.add("game-over-lose");
-  document.getElementById("board").innerHTML = "Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length;
+  document.getElementById("board").innerHTML = "Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
 }
 
 
