@@ -35,7 +35,7 @@ input.addEventListener("keyup", function(event) {
  };
 });
 
-
+document.getElementById("easy").onclick = setEasy;
 document.getElementById("medium").onclick = setMedium;
 document.getElementById("hard").onclick = setHard;
 
@@ -57,6 +57,10 @@ function init() {
   if (document.getElementById("board").classList.contains("game-over-lose")) {
     document.getElementById("board").classList.remove("game-over-lose");
   }
+
+  if (document.getElementById("board").classList.contains("game-over-win")) {
+    document.getElementById("board").classList.remove("game-over-win");
+  }
 }
 
 function refresh() {
@@ -77,9 +81,7 @@ init();
 
   turboTypingArray = easyWords.slice();
 
-  turboTypingArray.forEach((item, i) => {
-    document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
-  });
+
 
   document.getElementById("user-input").focus();
   refresh();
@@ -165,9 +167,10 @@ function wrongWord() {
 
 function checkDone() {
   if (turboTypingArray.length < 1) {
-    score = score + (attempts - correctAttempts);
-    alert("Score: " + score +  "\nAttempts: " + attempts + "\nCorrect Attempts: " + correctAttempts + "\nHighest Answer Streak: " +highestAnswerStreak)
+    score = score - (attempts - correctAttempts);
+
     clearInterval(myTimer);
+    gameWin();
   }
 }
 
@@ -175,7 +178,15 @@ function checkDone() {
 function gameOver() {
 
   document.getElementById("board").classList.add("game-over-lose");
-  document.getElementById("board").innerHTML = "Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
+  document.getElementById("board").innerHTML = "GAME OVER <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
+}
+
+
+function gameWin() {
+
+  console.log("win");
+  document.getElementById("board").classList.add("game-over-win");
+  document.getElementById("board").innerHTML = "YOU WIN! <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
 }
 
 
