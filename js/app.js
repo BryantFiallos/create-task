@@ -18,7 +18,6 @@ for (var i = 0; i < hardWords.length; i++) {
 
 let turboTypingArray = [];
 let word
-let gameFinished = false;
 let score = 0;
 let attempts = 0;
 let correctAttempts = 0;
@@ -67,14 +66,17 @@ function init() {
 }
 
 function refresh() {
-  gameFinished = false;
+
   var newWordBoard = "";
 
   turboTypingArray.forEach((item, i) => {
     newWordBoard += "<div class='board-word'>" +item + "</div>"
   });
+  if (turboTypingArray.length > 0) {
+
 
   document.getElementById("board").innerHTML = newWordBoard;
+}
 }
 
 
@@ -134,9 +136,9 @@ function CheckInput() {
  }
 
  document.getElementById("user-input").value = "";
-if (gameFinished === false) {
+
     refresh();
-}
+
 
 }
 
@@ -186,7 +188,7 @@ function gameOver() {
 
   document.getElementById("board").classList.add("game-over-lose");
   document.getElementById("board").innerHTML = "GAME OVER <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
-  gameFinished = true;
+
 }
 
 
@@ -194,7 +196,7 @@ function gameWin() {
 
   document.getElementById("board").classList.add("game-over-win");
   document.getElementById("board").innerHTML = "YOU WIN! <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
-  gameFinished = true;
+  
 }
 
 
