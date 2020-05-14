@@ -1,18 +1,11 @@
 //CONSTANTS
-let duplicate;
 const easyWords = ["dog", "cat", "bat", "axe", "hat", "ant", "sat", "rug", "mug", "bet", "art", "can", "day", "box", "egg", "few", "bed", "job", "hot", "men", "use", "sun", "jar", "lip", "flu", "aim", "red", "lid", "ear", "tea", "ski", "oak", "gum", "ham", "mob", "nut", "shy", "van", "elk", "gem", "rap", "fur", "eve", "cry", "mad", "ore", "tax", "six", "pet", "old", "map", "gym", "leg", "bus", "app", "war", "yes", "mud", "rim", "duo"];
 const mediumWords = ["house", "beach", "adult", "chief", "funny", "hello", "metal", "sauce", "cocoa", "flags", "upset", "pearl", "trash", "enemy", "pizza", "humor", "eagle", "flame", "cargo", "puppy", "retro", "spark", "bride", "straw", "inbox", "bored", "chalk", "fatal", "hobby", "melee", "bagel", "debug", "amaze", "witch", "stool", "thief", "acorn", "hover", "lever", "merge", "lunar", "debit", "cubic", "erase", "vivid", "waist", "yeast", "syrup", "trunk", "rebel", "lobby", "pasta", "grape", "choir", "jewel", "scoop", "rival", "yacht", "sushi", "bunny"];
 const hardWords = ["ability", "battery", "compare", "illness", "weather", "speaker", "package", "organic", "quickly", "regular", "premium", "musical", "journal", "healthy", "economy", "connect", "gallery", "illegal", "parking", "roughly", "success", "accused", "chronic", "unusual", "version", "setting", "message", "removal", "several", "dispute", "tourist", "avocado", "witness", "soldier", "monster", "habitat", "crystal", "younger", "analyze", "nervous", "precise", "trailer", "satisfy", "minimal", "fortune", "genuine", "bizarre", "exhibit", "gesture", "nucleus", "pivotal", "rainbow", "mustard", "lottery", "address", "network", "legally", "cartoon", "horizon", "induced"];
+
 const wrongSound = document.getElementById("wrong");
 const correctSound = document.getElementById("correct");
-for (var i = 0; i < hardWords.length; i++) {
-  for (var j = i+1; j < hardWords.length; j++) {
-    if (hardWords[i] == hardWords[j]) {
-      duplicate = hardWords[j]
-      console.log(duplicate)
-    }
-  }
-}
+
 
 //VARIABLES
 
@@ -25,6 +18,8 @@ let answerStreak = 0;
 let highestAnswerStreak = 0;
 let timeRemaining;
 let myTimer;
+let averageSpeed;
+let lettersPerWord;
 
 //EVENT LISTENERS
 
@@ -85,6 +80,7 @@ function setEasy() {
 init();
 
   turboTypingArray = easyWords.slice();
+  lettersPerWord = 3;
 
 
 
@@ -99,10 +95,7 @@ function setMedium() {
   init();
 
     turboTypingArray = mediumWords.slice();
-
-    turboTypingArray.forEach((item, i) => {
-      document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
-    });
+    lettersPerWord = 3;
 
     document.getElementById("user-input").focus();
     refresh();
@@ -114,10 +107,8 @@ function setHard() {
   init();
 
     turboTypingArray = hardWords.slice();
+    lettersPerWord = 3;
 
-    turboTypingArray.forEach((item, i) => {
-      document.getElementById("board").innerHTML += "<div class='board-word'>" +item + "</div>"
-    });
 
     document.getElementById("user-input").focus();
     refresh();
@@ -177,6 +168,7 @@ function wrongWord() {
 function checkDone() {
   if (turboTypingArray.length < 1) {
     score = score - (attempts - correctAttempts);
+    averageSpeed = Math.floor((attempts * lettersPerWord) / (120 - timeRemaining))
 
     clearInterval(myTimer);
     gameWin();
@@ -195,8 +187,8 @@ function gameOver() {
 function gameWin() {
 
   document.getElementById("board").classList.add("game-over-win");
-  document.getElementById("board").innerHTML = "YOU WIN! <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Words Remaining: " + turboTypingArray.length + "/60";
-  
+  document.getElementById("board").innerHTML = "YOU WIN! <br> Score: " + score + "<br>Attempts: " + attempts + "<br>Correct Attempts: " + correctAttempts + "<br>Highest Answer Streak: " + highestAnswerStreak + "<br>Average Speed : " + averageSpeed + " charcters per second";
+
 }
 
 
@@ -243,5 +235,5 @@ function playAudioWrong() {
 function playAudioCorrect() {
   correctSound.pause();
   correctSound.currentTime = 0;
-  document.getElementById("correct").play();
+  correctSound.play();
 }
